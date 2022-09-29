@@ -52,7 +52,7 @@ impl Lexer {
         self.input.get(self.cursor + n)
     }
 
-    fn is_done(&self) -> bool {
+    pub fn is_done(&self) -> bool {
         self.cursor >= self.input.len()
     }
 }
@@ -91,7 +91,7 @@ fn read_identifier(lexer: &mut Lexer) -> Option<Token> {
     if is_bool_literal(&ident) {
         return Some(Token::new(TokenKind::Boolean, ident));
     }
-    return Some(Token::new(TokenKind::Identifier, ident));
+    Some(Token::new(TokenKind::Identifier, ident))
 }
 
 fn is_identifier(ch: &char) -> bool {
