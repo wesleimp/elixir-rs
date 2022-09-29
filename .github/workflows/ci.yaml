@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+    branches:
+    - main
+    - test-actions
+  pull_request:
+    branches:
+    - main
+    - test-actions
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: ${{ matrix.target }}
+
+      - uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --no-fail-fast
