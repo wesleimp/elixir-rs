@@ -1,4 +1,4 @@
-use self::token::{Token, TokenKind};
+use self::token::{Token, TokenType};
 
 mod token;
 
@@ -68,9 +68,9 @@ impl Iterator for Lexer {
             ',' => read_comma(self),
             ':' => read_atom(self),
             '?' => read_char(self),
-            ch if is_newline(ch) => read_with(self, TokenKind::NewLine),
-            ch if is_quote(ch) => read_with(self, TokenKind::Quote),
-            ch if is_delim(ch) => read_with(self, TokenKind::Delimiter),
+            ch if is_newline(ch) => read_with(self, TokenType::NewLine),
+            ch if is_quote(ch) => read_with(self, TokenType::Quote),
+            ch if is_delim(ch) => read_delimiter(self),
             ch if is_operator(ch) => read_operator(self),
             ch if ch.is_numeric() => read_number(self),
             ch if is_identifier(ch) => read_identifier(self),
@@ -80,18 +80,65 @@ impl Iterator for Lexer {
     }
 }
 
+fn read_delimiter(lexer: &mut Lexer) -> Option<Token> {
+    let value = lexer.read_char()?;
+    let ty = match value {
+        '{' => Some(TokenType::LeftBrace),
+        '}' => Some(TokenType::RightBrace),
+        '[' => Some(TokenType::LeftBrace),
+        ']' => Some(TokenType::RightBrace),
+        '(' => Some(TokenType::LeftBrace),
+        ')' => Some(TokenType::RightBrace),
+        '%' => Some(TokenType::Percent),
+        _ => None,
+    }
+    .unwrap();
+
+    Some(Token::new(ty, value.to_string()))
+}
+
 fn read_whitespace(lexer: &mut Lexer) -> Option<Token> {
     let value = lexer.read_while(&|ch: &char| ch.is_whitespace())?;
-    Some(Token::new(TokenKind::WhiteSpace, value))
+    Some(Token::new(TokenType::WhiteSpace, value))
 }
 
 fn read_identifier(lexer: &mut Lexer) -> Option<Token> {
     let ident = lexer.read_while(is_identifier)?;
 
-    if is_bool_literal(&ident) {
-        return Some(Token::new(TokenKind::Boolean, ident));
+    let ty = match ident.as_str() {
+        "alias" => Some(TokenType::Alias),
+        "and" => Some(TokenType::And),
+        "break" => Some(TokenType::Break),
+        "cond" => Some(TokenType::Cond),
+        "def" => Some(TokenType::Def),
+        "defmacro" => Some(TokenType::Defmacro),
+        "defmodule" => Some(TokenType::Defmodule),
+        "do" => Some(TokenType::Do),
+        "@doc" => Some(TokenType::Doc),
+        "else" => Some(TokenType::Else),
+        "elseif" => Some(TokenType::ElseIf),
+        "end" => Some(TokenType::End),
+        "false" => Some(TokenType::False),
+        "for" => Some(TokenType::For),
+        "if" => Some(TokenType::If),
+        "import" => Some(TokenType::Import),
+        "in" => Some(TokenType::In),
+        "@moduledoc" => Some(TokenType::ModuleDoc),
+        "nil" => Some(TokenType::Nil),
+        "not" => Some(TokenType::Not),
+        "or" => Some(TokenType::Or),
+        "require" => Some(TokenType::Require),
+        "@spec" => Some(TokenType::Spec),
+        "then" => Some(TokenType::Then),
+        "true" => Some(TokenType::True),
+        "type" => Some(TokenType::Type),
+        "unless" => Some(TokenType::Unless),
+        "use" => Some(TokenType::Use),
+        _ => Some(TokenType::Identifier),
     }
-    Some(Token::new(TokenKind::Identifier, ident))
+    .unwrap();
+
+    Some(Token::new(ty, ident))
 }
 
 fn is_identifier(ch: &char) -> bool {
@@ -99,34 +146,30 @@ fn is_identifier(ch: &char) -> bool {
         && !ch.is_whitespace()
 }
 
-fn is_bool_literal(ident: &str) -> bool {
-    ident.eq("true") || ident.eq("false") || ident.eq("nil")
-}
-
 fn read_number(lexer: &mut Lexer) -> Option<Token> {
     let value = lexer.read_while(is_number)?;
-    Some(Token::new(TokenKind::Number, value))
+    Some(Token::new(TokenType::Number, value))
 }
 
 fn read_operator(lexer: &mut Lexer) -> Option<Token> {
     let value = lexer.read_while(is_operator)?;
-    Some(Token::new(TokenKind::Operator, value))
+    Some(Token::new(TokenType::Operator, value))
 }
 
-fn read_with(lexer: &mut Lexer, tok: TokenKind) -> Option<Token> {
+fn read_with(lexer: &mut Lexer, tok: TokenType) -> Option<Token> {
     Some(Token::new(tok, lexer.read_char()?.to_string()))
 }
 
 fn read_char(lexer: &mut Lexer) -> Option<Token> {
     let value = lexer.read_while(is_char)?;
-    Some(Token::new(TokenKind::Char, value))
+    Some(Token::new(TokenType::Char, value))
 }
 
 fn read_atom(lexer: &mut Lexer) -> Option<Token> {
     let next = lexer.peek_ahead(1)?;
     if next.is_alphanumeric() || is_quote(next) {
         let value = lexer.read_while(is_atom)?;
-        return Some(Token::new(TokenKind::Atom, value));
+        return Some(Token::new(TokenType::Atom, value));
     }
 
     read_operator(lexer)
@@ -176,12 +219,12 @@ fn is_extra_literal(ch: &char) -> bool {
 
 fn read_comma(lexer: &mut Lexer) -> Option<Token> {
     let value = lexer.read_char()?.to_string();
-    Some(Token::new(TokenKind::Comma, value))
+    Some(Token::new(TokenType::Comma, value))
 }
 
 fn read_comment(lexer: &mut Lexer) -> Option<Token> {
     let comment = lexer.read_while(|ch| !is_newline(ch))?;
-    Some(Token::new(token::TokenKind::Comment, comment))
+    Some(Token::new(token::TokenType::Comment, comment))
 }
 
 fn is_newline(ch: &char) -> bool {
@@ -196,7 +239,7 @@ mod comment {
     fn shoud_read_comment() {
         let comment = "# this is a comment";
         let token = Lexer::new(comment).next().unwrap();
-        assert!(token.kind().is_comment());
+        assert!(token.ty().is_comment());
         assert_eq!(token.value, comment.to_string())
     }
 
@@ -204,7 +247,7 @@ mod comment {
     fn shoud_read_atom() {
         let atom = ":hello";
         let token = Lexer::new(atom).next().unwrap();
-        assert!(token.kind().is_atom());
+        assert!(token.ty().is_atom());
         assert_eq!(token.value, atom.to_string())
     }
 
@@ -212,7 +255,7 @@ mod comment {
     fn shoud_read_atom_with_quotes() {
         let atom = r#":"hello""#;
         let token = Lexer::new(atom).next().unwrap();
-        assert!(token.kind().is_atom());
+        assert!(token.ty().is_atom());
         assert_eq!(token.value, atom.to_string())
     }
 
@@ -220,7 +263,7 @@ mod comment {
     fn shoud_read_atom_with_quotes_and_whitespace() {
         let atom = r#":"foo bar""#;
         let token = Lexer::new(atom).next().unwrap();
-        assert!(token.kind().is_atom());
+        assert!(token.ty().is_atom());
         assert_eq!(token.value, atom.to_string())
     }
 
@@ -228,7 +271,7 @@ mod comment {
     fn shoud_read_char() {
         let value = "?á";
         let token = Lexer::new(value).next().unwrap();
-        assert!(token.kind().is_char());
+        assert!(token.ty().is_char());
         assert_eq!(token.value, value.to_string())
     }
 
@@ -236,7 +279,7 @@ mod comment {
     fn shoud_read_new_line() {
         let value = "\n";
         let token = Lexer::new(value).next().unwrap();
-        assert!(token.kind().is_newline());
+        assert!(token.ty().is_newline());
         assert_eq!(token.value, value.to_string())
     }
 
@@ -244,12 +287,12 @@ mod comment {
     fn shoud_read_quotes() {
         let double = "\"";
         let token = Lexer::new(double).next().unwrap();
-        assert!(token.kind().is_quote());
+        assert!(token.ty().is_quote());
         assert_eq!(token.value, double.to_string());
 
         let single = "\'";
         let token = Lexer::new(single).next().unwrap();
-        assert!(token.kind().is_quote());
+        assert!(token.ty().is_quote());
         assert_eq!(token.value, single.to_string())
     }
 
@@ -259,7 +302,7 @@ mod comment {
         let mut lex = Lexer::new(delims);
         while !lex.is_done() {
             let token = lex.next().unwrap();
-            assert!(token.kind().is_delimiter());
+            assert!(token.ty().is_delimiter());
         }
     }
 
@@ -270,13 +313,13 @@ mod comment {
 
         while !lex.is_done() {
             let token = lex.next().unwrap();
-            let kind = token.kind();
+            let kind = token.ty();
 
             if kind.is_whitespace() || kind.is_newline() {
                 continue;
             }
 
-            assert!(token.kind().is_operator());
+            assert!(token.ty().is_operator());
         }
     }
 
@@ -284,7 +327,7 @@ mod comment {
     fn should_read_int() {
         let int = "40";
         let token = Lexer::new(int).next().unwrap();
-        assert!(token.kind().is_number());
+        assert!(token.ty().is_number());
         assert_eq!(token.value(), int.to_string());
     }
 
@@ -292,7 +335,7 @@ mod comment {
     fn should_read_float() {
         let float = "11.45";
         let token = Lexer::new(float).next().unwrap();
-        assert!(token.kind().is_number());
+        assert!(token.ty().is_number());
         assert_eq!(token.value(), float.to_string());
     }
 
@@ -300,7 +343,7 @@ mod comment {
     fn should_read_sci_float() {
         let sci_f = "1.11e10";
         let token = Lexer::new(sci_f).next().unwrap();
-        assert!(token.kind().is_number());
+        assert!(token.ty().is_number());
         assert_eq!(token.value(), sci_f.to_string());
     }
 
@@ -308,7 +351,7 @@ mod comment {
     fn should_read_bin() {
         let bin = "0b1010";
         let token = Lexer::new(bin).next().unwrap();
-        assert!(token.kind().is_number());
+        assert!(token.ty().is_number());
         assert_eq!(token.value(), bin.to_string());
     }
 
@@ -316,7 +359,7 @@ mod comment {
     fn should_read_octal() {
         let oct = "0o17";
         let token = Lexer::new(oct).next().unwrap();
-        assert!(token.kind().is_number());
+        assert!(token.ty().is_number());
         assert_eq!(token.value(), oct.to_string());
     }
 
@@ -324,7 +367,7 @@ mod comment {
     fn should_read_hexa() {
         let hex = "0xFFF";
         let token = Lexer::new(hex).next().unwrap();
-        assert!(token.kind().is_number());
+        assert!(token.ty().is_number());
         assert_eq!(token.value(), hex.to_string());
     }
 
@@ -332,7 +375,7 @@ mod comment {
     fn should_read_identifier() {
         let value = "defmodule";
         let token = Lexer::new(value).next().unwrap();
-        assert!(token.kind().is_identifier());
+        assert!(token.ty().is_identifier());
         assert_eq!(token.value(), value.to_string());
     }
 
@@ -340,7 +383,7 @@ mod comment {
     fn should_read_mod_identifier() {
         let value = "@spec";
         let token = Lexer::new(value).next().unwrap();
-        assert!(token.kind().is_identifier());
+        assert!(token.ty().is_identifier());
         assert_eq!(token.value(), value.to_string());
     }
 
@@ -348,7 +391,7 @@ mod comment {
     fn should_read_ignored_identifier() {
         let value = "_ignored";
         let token = Lexer::new(value).next().unwrap();
-        assert!(token.kind().is_identifier());
+        assert!(token.ty().is_identifier());
         assert_eq!(token.value(), value.to_string());
     }
 }

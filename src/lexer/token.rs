@@ -1,32 +1,71 @@
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Token {
     pub value: String,
-    pub kind: TokenKind,
+    pub ty: TokenType,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub enum TokenKind {
+pub enum TokenType {
     Atom,
     Boolean,
     Char,
     Comma,
     Comment,
-    Delimiter,
     Identifier,
     NewLine,
     Number,
     Operator,
     Quote,
     WhiteSpace,
+
+    // Identifiers
+    Alias,
+    And,
+    Break,
+    Cond,
+    Def,
+    Defmacro,
+    Defmodule,
+    Do,
+    Doc,
+    Else,
+    ElseIf,
+    End,
+    False,
+    For,
+    If,
+    Import,
+    In,
+    ModuleDoc,
+    Nil,
+    Not,
+    Or,
+    Require,
+    Spec,
+    Then,
+    True,
+    Type,
+    Unless,
+    Use,
+    Var,
+
+    // Delimiters
+    LeftParen,    // (
+    RightParen,   // )
+    LeftBrace,    // [
+    RightBrace,   // ]
+    LeftBracket,  // {
+    RightBracket, // }
+    Percent,      // %
 }
 
 impl Token {
-    pub fn new(kind: TokenKind, value: String) -> Token {
-        Token { kind, value }
+    pub fn new(kind: TokenType, value: String) -> Token {
+        Token { ty: kind, value }
     }
 
-    pub fn kind(&self) -> TokenKind {
-        self.kind.clone()
+    pub fn ty(&self) -> TokenType {
+        self.ty.clone()
     }
 
     pub fn value(&self) -> String {
@@ -34,52 +73,93 @@ impl Token {
     }
 }
 
-impl TokenKind {
+impl TokenType {
     pub fn is_atom(&self) -> bool {
-        matches!(self, TokenKind::Atom)
+        matches!(self, TokenType::Atom)
     }
 
     pub fn is_boolean(&self) -> bool {
-        matches!(self, TokenKind::Boolean)
+        matches!(self, TokenType::Boolean)
     }
 
     pub fn is_char(&self) -> bool {
-        matches!(self, TokenKind::Char)
+        matches!(self, TokenType::Char)
     }
 
     pub fn is_comment(&self) -> bool {
-        matches!(self, TokenKind::Comment)
+        matches!(self, TokenType::Comment)
     }
 
     pub fn is_comma(&self) -> bool {
-        matches!(self, TokenKind::Comma)
+        matches!(self, TokenType::Comma)
     }
 
     pub fn is_delimiter(&self) -> bool {
-        matches!(self, TokenKind::Delimiter)
+        matches!(
+            self,
+            TokenType::LeftParen
+                | TokenType::RightParen
+                | TokenType::LeftBrace
+                | TokenType::RightBrace
+                | TokenType::LeftBracket
+                | TokenType::RightBracket
+                | TokenType::Percent
+        )
     }
 
     pub fn is_identifier(&self) -> bool {
-        matches!(self, TokenKind::Identifier)
+        matches!(
+            self,
+            TokenType::Alias
+                | TokenType::And
+                | TokenType::Break
+                | TokenType::Cond
+                | TokenType::Def
+                | TokenType::Defmacro
+                | TokenType::Defmodule
+                | TokenType::Do
+                | TokenType::Doc
+                | TokenType::Else
+                | TokenType::ElseIf
+                | TokenType::End
+                | TokenType::False
+                | TokenType::For
+                | TokenType::If
+                | TokenType::Import
+                | TokenType::In
+                | TokenType::ModuleDoc
+                | TokenType::Nil
+                | TokenType::Not
+                | TokenType::Or
+                | TokenType::Require
+                | TokenType::Spec
+                | TokenType::Then
+                | TokenType::True
+                | TokenType::Type
+                | TokenType::Unless
+                | TokenType::Use
+                | TokenType::Var
+                | TokenType::Identifier
+        )
     }
 
     pub fn is_newline(&self) -> bool {
-        matches!(self, TokenKind::NewLine)
+        matches!(self, TokenType::NewLine)
     }
 
     pub fn is_number(&self) -> bool {
-        matches!(self, TokenKind::Number)
+        matches!(self, TokenType::Number)
     }
 
     pub fn is_operator(&self) -> bool {
-        matches!(self, TokenKind::Operator)
+        matches!(self, TokenType::Operator)
     }
 
     pub fn is_quote(&self) -> bool {
-        matches!(self, TokenKind::Quote)
+        matches!(self, TokenType::Quote)
     }
 
     pub fn is_whitespace(&self) -> bool {
-        matches!(self, TokenKind::WhiteSpace)
+        matches!(self, TokenType::WhiteSpace)
     }
 }
