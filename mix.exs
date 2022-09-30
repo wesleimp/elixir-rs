@@ -1,10 +1,12 @@
 defmodule ElixirRS.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+
   def project do
     [
       app: "elixir_rs",
-      version: "0.1.0",
+      version: @version,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       elixir: "~> 1.13",

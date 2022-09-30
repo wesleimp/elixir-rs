@@ -7,7 +7,6 @@ pub struct Token {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum TokenType {
     Atom,
-    Boolean,
     Char,
     Comma,
     Comment,
@@ -24,10 +23,10 @@ pub enum TokenType {
     Break,
     Cond,
     Def,
+    Defp,
     Defmacro,
     Defmodule,
     Do,
-    Doc,
     Else,
     ElseIf,
     End,
@@ -36,18 +35,20 @@ pub enum TokenType {
     If,
     Import,
     In,
-    ModuleDoc,
     Nil,
     Not,
     Or,
     Require,
-    Spec,
     Then,
     True,
-    Type,
     Unless,
     Use,
-    Var,
+
+    // Module Indentifiers
+    Doc,
+    ModuleDoc,
+    Spec,
+    Type,
 
     // Delimiters
     LeftParen,    // (
@@ -79,7 +80,7 @@ impl TokenType {
     }
 
     pub fn is_boolean(&self) -> bool {
-        matches!(self, TokenType::Boolean)
+        matches!(self, TokenType::True | TokenType::False | TokenType::Nil)
     }
 
     pub fn is_char(&self) -> bool {
@@ -115,6 +116,7 @@ impl TokenType {
                 | TokenType::Break
                 | TokenType::Cond
                 | TokenType::Def
+                | TokenType::Defp
                 | TokenType::Defmacro
                 | TokenType::Defmodule
                 | TokenType::Do
@@ -138,7 +140,6 @@ impl TokenType {
                 | TokenType::Type
                 | TokenType::Unless
                 | TokenType::Use
-                | TokenType::Var
                 | TokenType::Identifier
         )
     }

@@ -85,10 +85,10 @@ fn read_delimiter(lexer: &mut Lexer) -> Option<Token> {
     let ty = match value {
         '{' => Some(TokenType::LeftBrace),
         '}' => Some(TokenType::RightBrace),
-        '[' => Some(TokenType::LeftBrace),
-        ']' => Some(TokenType::RightBrace),
-        '(' => Some(TokenType::LeftBrace),
-        ')' => Some(TokenType::RightBrace),
+        '[' => Some(TokenType::LeftBracket),
+        ']' => Some(TokenType::RightBracket),
+        '(' => Some(TokenType::LeftParen),
+        ')' => Some(TokenType::RightParen),
         '%' => Some(TokenType::Percent),
         _ => None,
     }
@@ -106,37 +106,41 @@ fn read_identifier(lexer: &mut Lexer) -> Option<Token> {
     let ident = lexer.read_while(is_identifier)?;
 
     let ty = match ident.as_str() {
-        "alias" => Some(TokenType::Alias),
-        "and" => Some(TokenType::And),
-        "break" => Some(TokenType::Break),
-        "cond" => Some(TokenType::Cond),
-        "def" => Some(TokenType::Def),
-        "defmacro" => Some(TokenType::Defmacro),
-        "defmodule" => Some(TokenType::Defmodule),
-        "do" => Some(TokenType::Do),
-        "@doc" => Some(TokenType::Doc),
-        "else" => Some(TokenType::Else),
-        "elseif" => Some(TokenType::ElseIf),
-        "end" => Some(TokenType::End),
-        "false" => Some(TokenType::False),
-        "for" => Some(TokenType::For),
-        "if" => Some(TokenType::If),
-        "import" => Some(TokenType::Import),
-        "in" => Some(TokenType::In),
-        "@moduledoc" => Some(TokenType::ModuleDoc),
-        "nil" => Some(TokenType::Nil),
-        "not" => Some(TokenType::Not),
-        "or" => Some(TokenType::Or),
-        "require" => Some(TokenType::Require),
-        "@spec" => Some(TokenType::Spec),
-        "then" => Some(TokenType::Then),
-        "true" => Some(TokenType::True),
-        "type" => Some(TokenType::Type),
-        "unless" => Some(TokenType::Unless),
-        "use" => Some(TokenType::Use),
-        _ => Some(TokenType::Identifier),
-    }
-    .unwrap();
+        // keywords
+        "alias" => TokenType::Alias,
+        "and" => TokenType::And,
+        "break" => TokenType::Break,
+        "cond" => TokenType::Cond,
+        "def" => TokenType::Def,
+        "defp" => TokenType::Defp,
+        "defmacro" => TokenType::Defmacro,
+        "defmodule" => TokenType::Defmodule,
+        "do" => TokenType::Do,
+        "else" => TokenType::Else,
+        "elseif" => TokenType::ElseIf,
+        "end" => TokenType::End,
+        "false" => TokenType::False,
+        "for" => TokenType::For,
+        "if" => TokenType::If,
+        "import" => TokenType::Import,
+        "in" => TokenType::In,
+        "nil" => TokenType::Nil,
+        "not" => TokenType::Not,
+        "or" => TokenType::Or,
+        "require" => TokenType::Require,
+        "then" => TokenType::Then,
+        "true" => TokenType::True,
+        "unless" => TokenType::Unless,
+        "use" => TokenType::Use,
+
+        // module indentifiers
+        "@doc" => TokenType::Doc,
+        "@moduledoc" => TokenType::ModuleDoc,
+        "@spec" => TokenType::Spec,
+        "@type" => TokenType::Type,
+
+        _ => TokenType::Identifier,
+    };
 
     Some(Token::new(ty, ident))
 }
@@ -393,5 +397,32 @@ mod comment {
         let token = Lexer::new(value).next().unwrap();
         assert!(token.ty().is_identifier());
         assert_eq!(token.value(), value.to_string());
+    }
+
+    #[test]
+    fn should_read_comma() {
+        let value = "hello,";
+        let mut lexer = Lexer::new(value);
+
+        let token = lexer.next().unwrap();
+        assert!(token.ty().is_identifier());
+        assert_eq!(token.value(), "hello");
+
+        let token = lexer.next().unwrap();
+        assert!(token.ty().is_comma());
+    }
+    #[test]
+    fn should_read_booleans() {
+        let value = "true false nil";
+        let mut lexer = Lexer::new(value);
+        while !lexer.is_done() {
+            let token = lexer.next().unwrap();
+
+            if token.ty().is_whitespace() || token.ty().is_newline() {
+                continue;
+            }
+
+            assert!(token.ty().is_boolean());
+        }
     }
 }

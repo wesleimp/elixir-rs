@@ -1,0 +1,538 @@
+Token { value: "defmodule", ty: Defmodule }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "ElixirRS.MixProject", ty: Identifier }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "do", ty: Do }
+Token { value: "\n", ty: NewLine }
+Token { value: "  ", ty: WhiteSpace }
+Token { value: "use", ty: Use }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "Mix.Project", ty: Identifier }
+Token { value: "\n", ty: NewLine }
+Token { value: "\n", ty: NewLine }
+Token { value: "  ", ty: WhiteSpace }
+Token { value: "@version", ty: Identifier }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "0.1.0", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: "\n", ty: NewLine }
+Token { value: "\n", ty: NewLine }
+Token { value: "  ", ty: WhiteSpace }
+Token { value: "def", ty: Def }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "project", ty: Identifier }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "do", ty: Do }
+Token { value: "\n", ty: NewLine }
+Token { value: "    ", ty: WhiteSpace }
+Token { value: "[", ty: LeftBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "app", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "elixir_rs", ty: Identifier }
+Token { value: "\"", ty: Quote }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "version", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "@version", ty: Identifier }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "start_permanent", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "Mix.env", ty: Identifier }
+Token { value: "(", ty: LeftParen }
+Token { value: ")", ty: RightParen }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "==", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: ":prod", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "deps", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "deps", ty: Identifier }
+Token { value: "(", ty: LeftParen }
+Token { value: ")", ty: RightParen }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "elixir", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "1.13", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "aliases", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "aliases", ty: Identifier }
+Token { value: "(", ty: LeftParen }
+Token { value: ")", ty: RightParen }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "releases", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "releases", ty: Identifier }
+Token { value: "(", ty: LeftParen }
+Token { value: ")", ty: RightParen }
+Token { value: "\n", ty: NewLine }
+Token { value: "    ", ty: WhiteSpace }
+Token { value: "]", ty: RightBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "  ", ty: WhiteSpace }
+Token { value: "end", ty: End }
+Token { value: "\n", ty: NewLine }
+Token { value: "\n", ty: NewLine }
+Token { value: "  ", ty: WhiteSpace }
+Token { value: "defp", ty: Defp }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "deps", ty: Identifier }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "do", ty: Do }
+Token { value: "\n", ty: NewLine }
+Token { value: "    ", ty: WhiteSpace }
+Token { value: "[", ty: LeftBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":phoenix", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "1.5.4", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: "}", ty: RightBrace }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":phoenix_ecto", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "4.0", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: "}", ty: RightBrace }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":phoenix_html", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "2.11", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: "}", ty: RightBrace }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":phoenix_live_reload", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "1.2", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "only", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: ":dev}", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":phoenix_live_dashboard", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "0.2", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: "}", ty: RightBrace }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":phoenix_live_view", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "0.14.8", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: "}", ty: RightBrace }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":floki", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: ">=", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "0.27.0", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "only", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: ":test}", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":telemetry_metrics", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "0.4", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: "}", ty: RightBrace }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":telemetry_poller", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "0.4", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: "}", ty: RightBrace }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":gettext", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "0.11", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: "}", ty: RightBrace }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":logger_json", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "4.0", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: "}", ty: RightBrace }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":cowlib", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "2.10", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "override", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "true}", ty: Identifier }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":gun", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "2.0.0", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "hex", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: ":grpc_gun", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "override", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "true}", ty: Identifier }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":credo", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "1.4", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "only", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "[", ty: LeftBracket }
+Token { value: ":dev", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: ":test", ty: Atom }
+Token { value: "]", ty: RightBracket }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "runtime", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "false}", ty: Identifier }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":credo_sonarqube", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "0.1.0", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "only", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "[", ty: LeftBracket }
+Token { value: ":test", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: ":dev", ty: Atom }
+Token { value: "]", ty: RightBracket }
+Token { value: "}", ty: RightBrace }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":mock", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "0.3.0", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "only", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: ":test}", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":new_relic_agent", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "1.22", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: "}", ty: RightBrace }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "{", ty: LeftBrace }
+Token { value: ":bakeware", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "\"", ty: Quote }
+Token { value: "~>", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "0.2", ty: Number }
+Token { value: "\"", ty: Quote }
+Token { value: ",", ty: Comma }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "runtime", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "false}", ty: Identifier }
+Token { value: "\n", ty: NewLine }
+Token { value: "    ", ty: WhiteSpace }
+Token { value: "]", ty: RightBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "  ", ty: WhiteSpace }
+Token { value: "end", ty: End }
+Token { value: "\n", ty: NewLine }
+Token { value: "\n", ty: NewLine }
+Token { value: "  ", ty: WhiteSpace }
+Token { value: "defp", ty: Defp }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "aliases", ty: Identifier }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "do", ty: Do }
+Token { value: "\n", ty: NewLine }
+Token { value: "    ", ty: WhiteSpace }
+Token { value: "[", ty: LeftBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "setup", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "[", ty: LeftBracket }
+Token { value: "\"", ty: Quote }
+Token { value: "cmd", ty: Identifier }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "mix", ty: Identifier }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "setup", ty: Identifier }
+Token { value: "\"", ty: Quote }
+Token { value: "]", ty: RightBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "    ", ty: WhiteSpace }
+Token { value: "]", ty: RightBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "  ", ty: WhiteSpace }
+Token { value: "end", ty: End }
+Token { value: "\n", ty: NewLine }
+Token { value: "\n", ty: NewLine }
+Token { value: "  ", ty: WhiteSpace }
+Token { value: "defp", ty: Defp }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "releases", ty: Identifier }
+Token { value: "(", ty: LeftParen }
+Token { value: ")", ty: RightParen }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "do", ty: Do }
+Token { value: "\n", ty: NewLine }
+Token { value: "    ", ty: WhiteSpace }
+Token { value: "[", ty: LeftBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "overwrite", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "true", ty: True }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "include_executables_for", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "[", ty: LeftBracket }
+Token { value: ":unix", ty: Atom }
+Token { value: "]", ty: RightBracket }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "applications", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "[", ty: LeftBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "        ", ty: WhiteSpace }
+Token { value: "runtime_tools", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: ":permanent", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "        ", ty: WhiteSpace }
+Token { value: "elixir_rs", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: ":permanent", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "]", ty: RightBracket }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "steps", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "[", ty: LeftBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "        ", ty: WhiteSpace }
+Token { value: ":assemble", ty: Atom }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "        ", ty: WhiteSpace }
+Token { value: "&", ty: Operator }
+Token { value: "Bakeware.assemble", ty: Identifier }
+Token { value: "/", ty: Operator }
+Token { value: "1", ty: Number }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "]", ty: RightBracket }
+Token { value: ",", ty: Comma }
+Token { value: "\n", ty: NewLine }
+Token { value: "      ", ty: WhiteSpace }
+Token { value: "bakeware", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "[", ty: LeftBracket }
+Token { value: "compression_level", ty: Identifier }
+Token { value: ":", ty: Operator }
+Token { value: " ", ty: WhiteSpace }
+Token { value: "19", ty: Number }
+Token { value: "]", ty: RightBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "    ", ty: WhiteSpace }
+Token { value: "]", ty: RightBracket }
+Token { value: "\n", ty: NewLine }
+Token { value: "  ", ty: WhiteSpace }
+Token { value: "end", ty: End }
+Token { value: "\n", ty: NewLine }
+Token { value: "end", ty: End }
+Token { value: "\n", ty: NewLine }
